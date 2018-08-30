@@ -1,0 +1,63 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+struct data
+{
+    string id,value,name;
+};
+
+struct node
+{
+    time_t t;
+    data d;
+    int nodeNum;
+    string nodeId;
+    node* refNode;
+    string refNodeId;
+    std::set<node*> child ;
+    vector<string> childNodes;
+    node* genesis;
+    auto hashVal;
+};
+
+string encrypt(string s,int n){
+	string sol=s;
+	for(int i=0;i<sol.length();i++){
+		sol[i]+=n;
+	}
+	return sol;
+}
+string decrypt(string data,int n){
+	string sol=data;
+	for(int i=0;i<sol.length();i++){
+		sol[i]-=n;
+	}
+	return sol;
+}
+
+class records
+{
+    node n;
+    string hashVal;
+    
+    records()
+    {
+        n.refNode = NULL;
+        n.t = std::time(0);
+    }
+    records(data dt)
+    {
+        n.refNode = NULL;
+        n.t = std::time(0);
+        n.d.id = encrypt(dt.id,dt.id.size());
+        n.d.value = encrypt(dt.value,dt.value.size());
+        n.d.name = encrypt(dt.name,dt.name.size());
+    }    
+}
+
+int main() {
+
+  records r;
+		
+	return 0;
+}
